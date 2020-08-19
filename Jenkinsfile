@@ -2,20 +2,10 @@ pipeline {
     agent any
 
     stages {
-        stage('CheckOut') {
-            steps {
-                // Get some code from a GitHub repository
-                sh "echo starting the checkout process"
-                //sh "git clone https://github.com/spring-projects/spring-petclinic.git"
-                //git 'https://github.com/spring-projects/spring-petclinic.git'
-                sh "ls -a"
-                 sh "echo checkout process completed"
-            }
-        }
         stage('Build App') {
             steps{
                 sh "echo Build and Package process started"
-                sh "cd spring-petclinic/ && ./mvnw package"
+                sh "./mvnw package"
                 sh "echo Build and Package process completed"
             }
         }
