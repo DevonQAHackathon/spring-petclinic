@@ -9,15 +9,6 @@ pipeline {
                 sh "echo Build and Package process completed"
             }
         }
-        stage('Build Docker File') {
-            steps{
-                sh "echo Build docker File process started"
-                sh "rm Dockerfile"
-                sh "touch Dockerfile"
-                writeFile file: "Dockerfile" , text: "FROM openjdk:8-jdk-alpine"+"\n"+"COPY spring-petclinic/target/*.jar ./*.jar"+"\n"+'ENTRYPOINT ["java","-jar","*.jar"]'+"\n"+"EXPOSE  8080 80 3306"
-                sh "echo Build docker File process completed"
-            }
-        }
 		stage('Build Docker Image') {
             steps{
                 sh "echo Build docker Image process started"
