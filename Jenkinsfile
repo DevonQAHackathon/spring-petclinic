@@ -25,7 +25,7 @@ pipeline {
         // }
         stage('Push Docker Image') {
             steps{
-                withDockerRegistry(credentialsId: 'dockercred', url: 'hub.docker.com') { {
+                withDockerRegistry(credentialsId: 'dockercred', url: 'hub.docker.com') {
                 sh "echo Push Docker Image process started"
                 sh "docker push shankanth/spring-petclinic:latest"
                 sh "echo Push Docker Image process completed"
