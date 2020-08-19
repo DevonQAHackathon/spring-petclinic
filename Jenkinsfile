@@ -12,7 +12,7 @@ pipeline {
 		stage('Build Docker Image') {
             steps{
                 sh "echo Build docker Image process started"
-                sh "docker build -t shankanth/spring-petclinic:latest ."
+                sh "docker build -t shankanth/spring-petclinic:v2 ."
                 sh "echo Build docker Image process completed"
             }
         }
@@ -25,11 +25,13 @@ pipeline {
         // }
         stage('Push Docker Image') {
             steps{
+                script{
                 withDockerRegistry(credentialsId: 'dockercred', url: 'hub.docker.com') {
                 sh "echo Push Docker Image process started"
-                sh "docker push shankanth/spring-petclinic:latest"
+                sh "docker push shankanth/spring-petclinic:v2"
                 sh "echo Push Docker Image process completed"
                 }
+            }
 
             }
         }
