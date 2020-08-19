@@ -8,6 +8,7 @@ pipeline {
                 sh "echo starting the checkout process"
                 //sh "git clone https://github.com/spring-projects/spring-petclinic.git"
                 //git 'https://github.com/spring-projects/spring-petclinic.git'
+                sh "ls -a"
                  sh "echo checkout process completed"
             }
         }
