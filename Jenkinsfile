@@ -25,9 +25,8 @@ pipeline {
         // }
         stage('Push Docker Image') {
             steps{
-                withCredentials([usernamePassword(credentialsId: 'dockercred', passwordVariable: 'pass', usernameVariable: 'user')]) {
+                withDockerRegistry(credentialsId: 'dockercred', url: 'hub.docker.com') { {
                 sh "echo Push Docker Image process started"
-                sh "docker login -u user -p pass"
                 sh "docker push shankanth/spring-petclinic:latest"
                 sh "echo Push Docker Image process completed"
                 }
@@ -37,7 +36,7 @@ pipeline {
         stage('Run Ansible PlayBook') {
             steps{
                 sh "echo Run Ansible PlayBook process started"
-                sh ""
+                sh "ansible-playbook webserver.yml"
                 sh "echo Run Ansible PlayBook process completed"
             }
         }
